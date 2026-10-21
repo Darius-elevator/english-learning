@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="用原创卡通情景剧学习真实美式英语">
+  <title>Bubbly English｜美式口语情景剧</title>
+  <style>
+    :root {
+      --ink:#24324b; --purple:#6558e8; --purple-dark:#4a3fc4;
+      --yellow:#ffd166; --pink:#ff8fab; --mint:#72dec2; --sky:#87ceeb;
+      --paper:#fffdf8; --soft:#f4f1ff; --line:#ddd7f3; --white:#fff;
+      --shadow:0 16px 0 rgba(59,45,120,.08),0 24px 48px rgba(61,46,130,.13);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#f7f4ff;color:var(--ink);font-family:"Microsoft YaHei","Segoe UI",Arial,sans-serif;line-height:1.55}
+    button{font:inherit}
+    .page{min-height:100vh;overflow:hidden;background:
+      radial-gradient(circle at 10% 5%,rgba(255,209,102,.35),transparent 22%),
+      radial-gradient(circle at 90% 20%,rgba(135,206,235,.28),transparent 25%),#f7f4ff}
+    .container{width:min(1120px,calc(100% - 28px));margin:auto}
+    header{position:sticky;top:0;z-index:20;background:rgba(255,253,248,.92);border-bottom:2px solid var(--line);backdrop-filter:blur(14px)}
+    nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:900;color:var(--purple)}
+    .brand-face{width:42px;height:42px;display:grid;place-items:center;border-radius:15px;background:var(--yellow);box-shadow:0 4px 0 #e8b640;transform:rotate(-4deg)}
+    .stats{display:flex;gap:10px}
+    .stat{padding:8px 12px;border:2px solid var(--line);border-radius:999px;background:white;font-size:14px;font-weight:800}
+    .level-stat{color:var(--purple-dark);background:#eeeaff}
+    .assessment{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(29,25,55,.76);backdrop-filter:blur(12px)}
+    .assessment.hidden{display:none}
+    .assessment-card{width:min(680px,100%);max-height:92vh;overflow:auto;padding:30px;border:3px solid #cbc3ed;border-radius:30px;background:var(--paper);box-shadow:0 24px 80px rgba(15,10,45,.32)}
+    .assessment-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.assessment-head h2{margin:4px 0 6px;font-size:30px}.assessment-head p{margin:0;color:#748097}
+    .assessment-mascot{width:72px;height:72px;display:grid;place-items:center;border:3px solid var(--ink);border-radius:24px;background:var(--yellow);font-size:39px;transform:rotate(4deg)}
+    .test-progress{display:flex;gap:7px;margin:24px 0}.test-dot{height:9px;flex:1;border-radius:999px;background:#e7e2f6}.test-dot.done{background:var(--purple)}
+    .test-label{font-size:12px;font-weight:900;color:var(--purple);letter-spacing:1px}.test-question{margin:8px 0 17px;font-size:23px;font-weight:900}
+    .test-options{display:grid;gap:10px}.test-option{padding:14px 16px;border:2px solid var(--line);border-radius:15px;background:white;text-align:left;font-weight:800;cursor:pointer}.test-option:hover{border-color:#9c91ea;background:#f2efff}
+    .level-result{text-align:center}.level-orb{width:110px;height:110px;margin:5px auto 18px;display:grid;place-items:center;border:4px solid var(--ink);border-radius:36px;background:var(--mint);font-size:38px;font-weight:1000;transform:rotate(-3deg)}
+    .hero{padding:54px 0 28px}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:#ebe8ff;color:var(--purple-dark);font-weight:800;font-size:13px}
+    h1{margin:18px 0 15px;font-size:clamp(42px,6vw,72px);line-height:1.03;letter-spacing:-2.5px}
+    h1 span{position:relative;color:var(--purple)}
+    h1 span:after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:10px;border-radius:50%;background:var(--yellow);z-index:-1;transform:rotate(-1deg)}
+    .hero-copy{max-width:650px;color:#56627b;font-size:18px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+    .btn{border:0;border-radius:15px;padding:13px 19px;font-weight:900;cursor:pointer;transition:.18s;box-shadow:0 5px 0 rgba(40,31,92,.15)}
+    .btn:hover{transform:translateY(-2px)} .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(40,31,92,.15)}
+    .btn-main{color:white;background:var(--purple)} .btn-main:hover{background:var(--purple-dark)}
+    .btn-soft{color:var(--purple-dark);background:white;border:2px solid var(--line)}
+    .cast-card{position:relative;min-height:300px;border:3px solid #cfc7f1;border-radius:36px;background:#dff5ff;box-shadow:var(--shadow);overflow:hidden}
+    .cloud{position:absolute;width:110px;height:38px;border-radius:999px;background:white;opacity:.9}
+    .cloud:before,.cloud:after{content:"";position:absolute;border-radius:50%;background:white}.cloud:before{width:48px;height:48px;left:18px;top:-22px}.cloud:after{width:34px;height:34px;right:18px;top:-14px}
+    .cloud.one{left:30px;top:55px}.cloud.two{right:25px;top:35px;transform:scale(.75)}
+    .cast-title{position:absolute;top:22px;left:0;right:0;text-align:center;color:#45516a;font-size:13px;font-weight:900;letter-spacing:1.4px}
+    .characters{position:absolute;left:18px;right:18px;bottom:14px;display:flex;justify-content:center;align-items:flex-end;gap:14px}
+    .character{text-align:center;animation:bob 3.2s ease-in-out infinite}.character:nth-child(2){animation-delay:.35s}.character:nth-child(3){animation-delay:.7s}
+    @keyframes bob{50%{transform:translateY(-8px) rotate(1deg)}}
+    .head{width:86px;height:86px;display:grid;place-items:center;border:3px solid var(--ink);border-radius:42% 42% 48% 48%;font-size:48px;background:#ffc6a8;box-shadow:inset 0 -8px 0 rgba(153,75,42,.08)}
+    .character:nth-child(2) .head{width:102px;height:102px;background:#ffd7e2}.character:nth-child(3) .head{background:#d9c2ff}
+    .body{height:74px;margin:-3px 7px 0;border:3px solid var(--ink);border-radius:24px 24px 12px 12px;background:var(--mint)}
+    .character:nth-child(2) .body{background:var(--yellow)}.character:nth-child(3) .body{background:var(--pink)}
+    .name{display:inline-block;margin-top:7px;padding:3px 9px;border-radius:999px;background:white;border:2px solid var(--ink);font-size:12px;font-weight:900}
+    main{padding:34px 0 84px}
+    .dashboard{display:grid;grid-template-columns:240px 1fr;gap:22px;align-items:start}
+    .side{position:sticky;top:94px;padding:18px;border:2px solid var(--line);border-radius:24px;background:white;box-shadow:0 10px 28px rgba(61,46,130,.08)}
+    .side h3{margin:0 0 14px;font-size:15px;color:#6a7390}
+    .episode-list{display:grid;gap:9px}
+    .episode-btn{display:flex;align-items:center;gap:10px;width:100%;padding:11px;border:2px solid transparent;border-radius:14px;background:#f7f5ff;color:var(--ink);text-align:left;cursor:pointer}
+    .episode-btn.active{border-color:#b9aff2;background:#ebe8ff;color:var(--purple-dark)}
+    .ep-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:white;font-size:18px}
+    .ep-text strong{display:block;font-size:13px}.ep-text small{color:#7a849a}
+    .tiny-progress{margin-top:18px}.tiny-progress div:first-child{display:flex;justify-content:space-between;font-size:12px;font-weight:800}
+    .bar{height:10px;margin-top:7px;border-radius:999px;background:#ece9fa;overflow:hidden}.bar span{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--mint),var(--purple));transition:.35s}
+    .daily{margin-top:18px;padding:15px;border:2px solid #f0c24d;border-radius:18px;background:#fff8d8}.daily h4{margin:0 0 3px}.daily-sub{color:#806a25;font-size:11px;font-weight:800}.quest{display:grid;grid-template-columns:24px 1fr auto;gap:7px;align-items:center;margin-top:10px;font-size:12px}.quest-icon{width:23px;height:23px;display:grid;place-items:center;border-radius:8px;background:white}.quest.done{color:#188069}.claim{width:100%;margin-top:12px;padding:9px;border:0;border-radius:11px;background:#dbc861;color:#76640c;font-weight:900}.claim.ready{background:var(--purple);color:white;cursor:pointer}.reset-level{width:100%;margin-top:12px;border:0;background:transparent;color:#8b849f;font-size:11px;cursor:pointer;text-decoration:underline}
+    .stage{border:3px solid #cbc3ed;border-radius:30px;background:var(--paper);box-shadow:var(--shadow);overflow:hidden}
+    .episode-top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px 24px;border-bottom:2px dashed var(--line);background:#fff}
+    .episode-top h2{margin:0;font-size:25px}.episode-top p{margin:2px 0 0;color:#78839a;font-size:13px}
+    .scene-badge{white-space:nowrap;padding:7px 11px;border-radius:999px;background:#fff0b8;color:#725300;font-size:12px;font-weight:900}
+    .scene{position:relative;min-height:350px;padding:32px 26px;background:linear-gradient(#cdeeff 0 57%,#edd9c1 57%)}
+    .scene:before{content:"☕  TODAY'S SPECIAL  🥐";position:absolute;left:50%;top:20px;transform:translateX(-50%) rotate(-1deg);padding:8px 16px;border:3px solid #6b4e3d;border-radius:8px;background:#30594c;color:white;font-size:12px;font-weight:900}
+    .table{position:absolute;left:50%;bottom:20px;width:320px;height:70px;transform:translateX(-50%);border:3px solid #6b4e3d;border-radius:50%;background:#b57a55}.table:after{content:"";position:absolute;left:50%;top:60px;width:35px;height:100px;transform:translateX(-50%);background:#6b4e3d}
+    .actor{position:absolute;bottom:56px;width:118px;text-align:center}.actor.left{left:8%}.actor.right{right:8%}
+    .actor-face{width:82px;height:82px;margin:auto;display:grid;place-items:center;border:3px solid var(--ink);border-radius:45%;background:#ffc6a8;font-size:46px}.actor.right .actor-face{background:#ffd7e2}
+    .actor-body{height:92px;margin:-3px 12px 0;border:3px solid var(--ink);border-radius:22px 22px 8px 8px;background:#7f73ee}.actor.right .actor-body{background:#ff9ebb}
+    .speech{position:absolute;top:76px;left:50%;width:min(470px,52%);transform:translateX(-50%);padding:20px 22px;border:3px solid var(--ink);border-radius:22px;background:white;box-shadow:7px 7px 0 rgba(36,50,75,.13)}
+    .speech:after{content:"";position:absolute;left:30px;bottom:-16px;width:25px;height:25px;background:white;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(45deg)}
+    .speaker{color:var(--purple);font-size:13px;font-weight:900}.line-en{margin:5px 0;font-size:23px;font-weight:900}.line-cn{color:#737f96;font-size:14px}
+    .lesson-panel{padding:24px}
+    .prompt{display:flex;align-items:center;gap:10px;margin-bottom:13px;font-weight:900}.prompt span{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;background:var(--yellow)}
+    .choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .choice-row{display:grid;grid-template-columns:1fr 48px;gap:8px;align-items:stretch}
+    .choice{position:relative;padding:15px 16px;border:2px solid var(--line);border-radius:16px;background:white;color:var(--ink);text-align:left;cursor:pointer;font-weight:800;transition:.18s}
+    .choice:hover{border-color:#9f94ed;transform:translateY(-2px);box-shadow:0 7px 0 #ebe8ff}.choice.correct{border-color:#45b99b;background:#e8fff8}.choice.wrong{border-color:#ff7898;background:#fff0f4;animation:shake .28s}
+    .choice-sound{border:2px solid var(--line);border-radius:15px;background:#f2efff;color:var(--purple-dark);cursor:pointer;font-size:18px;transition:.18s}
+    .choice-sound:hover{border-color:#9f94ed;background:#e8e3ff;transform:translateY(-2px)}
+    @keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+    .feedback{display:none;margin-top:15px;padding:16px;border-radius:16px;background:#f2efff;border:2px solid #d8d1fb}.feedback.show{display:block}.feedback strong{color:var(--purple-dark)}
+    .native-note{display:flex;gap:12px;margin-top:16px;padding:15px;border-radius:16px;background:#fff6cf;border:2px dashed #dfb83f}.native-note b{color:#745900}
+    .lesson-actions{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:18px}
+    .footer-note{margin-top:34px;text-align:center;color:#7e879c;font-size:13px}
+    .confetti{position:fixed;z-index:99;pointer-events:none;font-size:22px;animation:fall 1.2s ease-out forwards}
+    @keyframes fall{from{transform:translateY(-10px) rotate(0);opacity:1}to{transform:translateY(170px) rotate(260deg);opacity:0}}
+    @media(max-width:850px){.hero-grid,.dashboard{grid-template-columns:1fr}.side{position:static}.episode-list{grid-template-columns:repeat(2,1fr)}.ep-text small{display:none}.scene{min-height:390px}.speech{top:70px;width:82%}.actor{bottom:40px}.actor.left{left:4%}.actor.right{right:4%}}
+    @media(max-width:560px){.stats .stat:nth-child(2){display:none}.hero{padding-top:34px}.cast-card{min-height:270px}.choices{grid-template-columns:1fr}.episode-top{align-items:flex-start}.scene-badge{display:none}.scene{padding-inline:10px}.speech{width:92%}.line-en{font-size:19px}.actor{transform:scale(.82)}.actor.left{left:-4%}.actor.right{right:-4%}.lesson-panel{padding:18px}.episode-list{grid-template-columns:1fr}.ep-text small{display:block}}
+  </style>
+</head>
+<body>
+<div class="page">
+  <section class="assessment" id="assessment">
+    <div class="assessment-card" id="assessmentCard">
+      <div class="assessment-head">
+        <div><span class="eyebrow">LEVEL CHECK · 约 3 分钟</span><h2>先让我认识你的英语</h2><p>题目会根据你的回答自动变难或变简单，完成后从最适合你的剧情开始。</p></div>
+        <div class="assessment-mascot">🧭</div>
+      </div>
+      <div class="test-progress" id="testProgress"></div>
+      <div class="test-label" id="testLabel">自适应水平测试</div>
+      <div class="test-question" id="testQuestion"></div>
+      <div class="test-options" id="testOptions"></div>
+    </div>
+  </section>
+  <header>
+    <nav class="container">
+      <div class="brand"><span class="brand-face">😄</span> Bubbly English</div>
+      <div class="stats">
+        <div class="stat level-stat">🎯 <span id="levelBadge">待测</span></div>
+        <div class="stat">🔥 <span id="streak">1</span> 天</div>
+        <div class="stat">💜 <span id="hearts">3</span></div>
+        <div class="stat">⭐ <span id="xp">0</span> XP</div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">🎬 原创美式口语情景剧</span>
+        <h1>别背英语了，<br>来<span>追一集</span>吧。</h1>
+        <p class="hero-copy">跟一群脑洞大开的朋友一起经历咖啡店社死、派对冷场、消息误会和晚餐灾难。每集 5 分钟，学到美国人现实中真的会说的表达。</p>
+        <div class="hero-actions">
+          <button class="btn btn-main" onclick="startEpisode()">▶ 开始今日剧集</button>
+          <button class="btn btn-soft" onclick="speakLine()">🔊 听听他们怎么说</button>
+        </div>
+      </div>
+      <div class="cast-card">
+        <div class="cast-title">MEET YOUR CHAOTIC STUDY BUDDIES</div>
+        <div class="cloud one"></div><div class="cloud two"></div>
+        <div class="characters">
+          <div class="character"><div class="head">😜</div><div class="body"></div><span class="name">KIKI</span></div>
+          <div class="character"><div class="head">😄</div><div class="body"></div><span class="name">MIA</span></div>
+          <div class="character"><div class="head">🤖</div><div class="body"></div><span class="name">NOVA</span></div>
+          <div class="character"><div class="head">🌊</div><div class="body"></div><span class="name">BUBBLES</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container" id="learn">
+    <div class="dashboard">
+      <aside class="side">
+        <h3>本季剧集 · SEASON 1</h3>
+        <div class="episode-list" id="episodeList"></div>
+        <div class="tiny-progress">
+          <div><span>本季进度</span><span id="progressText">0%</span></div>
+          <div class="bar"><span id="progressBar"></span></div>
+        </div>
+        <div class="daily">
+          <h4>⚡ 每日挑战</h4>
+          <div class="daily-sub" id="dailyDate"></div>
+          <div id="dailyQuests"></div>
+          <button class="claim" id="claimButton" onclick="claimDaily()">完成任务领取 +30 XP</button>
+        </div>
+        <button class="reset-level" onclick="resetPlacement()">重新测试英语水平</button>
+      </aside>
+
+      <section class="stage">
+        <div class="episode-top">
+          <div><h2 id="episodeTitle"></h2><p id="episodeSubtitle"></p></div>
+          <span class="scene-badge" id="sceneBadge"></span>
+        </div>
+
+        <div class="scene">
+          <div class="speech">
+            <div class="speaker" id="speaker"></div>
+            <div class="line-en" id="lineEnglish"></div>
+            <div class="line-cn" id="lineChinese"></div>
+          </div>
+          <div class="actor left"><div class="actor-face" id="leftFace">😏</div><div class="actor-body"></div></div>
+          <div class="actor right"><div class="actor-face" id="rightFace">😄</div><div class="actor-body"></div></div>
+          <div class="table"></div>
+        </div>
+
+        <div class="lesson-panel">
+          <div class="prompt"><span>?</span><div id="question"></div></div>
+          <div class="choices" id="choices"></div>
+          <div class="feedback" id="feedback"></div>
+          <div class="native-note"><span>💡</span><div><b>Native secret：</b><span id="nativeNote"></span></div></div>
+          <div class="lesson-actions">
+            <button class="btn btn-soft" onclick="speakLine()">🔊 慢速朗读</button>
+            <button class="btn btn-main" onclick="nextScene()">下一幕 →</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="footer-note">所有剧情与台词均为原创 · 学的是自然表达，不是教科书腔调</div>
+  </main>
+</div>
+
+<script>
+const placementBank=[
+ {d:1,q:"别人问 ‘How's it going?’，哪个回答最自然？",options:["Pretty good. How about you?","I am go to home.","My going is blue."],a:0},
+ {d:1,q:"选择正确句子：",options:["She works here.","She work here.","She working here yesterday."],a:0},
+ {d:1,q:"‘Can I get a coffee?’ 在咖啡店表示：",options:["我可以点一杯咖啡吗？","我能找到咖啡吗？","我要拿走咖啡店。"],a:0},
+ {d:2,q:"朋友说 ‘I'm running late.’，意思是：",options:["我要迟到了","我在跑步","时间正在奔跑"],a:0},
+ {d:2,q:"选择自然表达：‘我刚准备给你发消息。’",options:["I was just about to text you.","I just ready send you.","I almost messaging you now."],a:0},
+ {d:2,q:"‘No worries’ 最常见的意思是：",options:["没关系/别担心","没有任何想法","我拒绝交流"],a:0},
+ {d:3,q:"‘That came out wrong’ 通常表示：",options:["我刚才表达得不太对","东西从门里出来了","答案完全正确"],a:0},
+ {d:3,q:"哪句更适合委婉提出不同意见？",options:["I see your point, but I'm not sure that would work.","You're wrong. Stop.","Your idea has no use."],a:0},
+ {d:3,q:"‘I'm up for it’ 的意思是：",options:["我愿意参加/尝试","我站在楼上","我要结束它"],a:0},
+ {d:4,q:"‘I wouldn't read too much into it’ 最接近：",options:["别过度解读这件事","不要读太多书","这段文字很长"],a:0},
+ {d:4,q:"哪句最自然地表达‘我不是故意冒犯你’？",options:["I didn't mean to come across that way.","I did not want offense you.","My meaning wasn't bad to you."],a:0},
+ {d:4,q:"‘Let's play it by ear’ 在计划中表示：",options:["到时候看情况再决定","用耳朵演奏","完全取消计划"],a:0}
+];
+
+const episodes=[
+ {icon:"☕",level:"A1",cast:["😜","😄"],title:"咖啡店座位危机",subtitle:"The Coffee Shop Seat Crisis",badge:"EP. 01 · 咖啡店",scenes:[
+  {speaker:"MIA",en:"Hey, is this seat taken?",cn:"嗨，这个位子有人吗？",q:"Jake 想让 Mia 坐下，最自然的回答是？",choices:["Nope, go ahead.","Yes, I take it every day.","Please sit your body."],answer:0,good:"完美！Nope 很口语，go ahead 在这里就是“请坐吧”。",bad:"听起来像机器人刚学会坐椅子。美国人会直接说 “Nope, go ahead.”",note:"“Is this seat taken?” 不是问椅子被谁拿走，而是在问这里是否有人。"},
+  {speaker:"JAKE",en:"Nope, go ahead. I was saving it for my imaginary friend.",cn:"没人，请坐。我本来给我的幻想朋友留着的。",q:"Mia 想幽默地接话，可以怎么说？",choices:["Hope they don't mind sharing.","Your friend is not existing.","I will defeat your friend."],answer:0,good:"很好！自然地接住了对方的玩笑，气氛立刻轻松。",bad:"这句话可能会让咖啡店突然安静三秒。试试更轻松的回应。",note:"美国式聊天常用轻微自嘲或接梗来破冰，不需要真的解释笑话。"},
+  {speaker:"MIA",en:"Hope they don't mind sharing. I'm Mia, by the way.",cn:"希望他不介意一起坐。对了，我叫 Mia。",q:"“by the way” 在这里有什么感觉？",choices:["自然补充一件事", "立刻结束谈话", "表示非常生气"],answer:0,good:"正确！它让自我介绍听起来不刻意。",bad:"没有那么严肃。它只是一个很自然的“对了/顺便说一下”。",note:"By the way 常用于自然转换话题，真实交流中非常高频。"}
+ ]},
+ {icon:"🎉",level:"A2",cast:["🤓","😄"],title:"派对上忘了名字",subtitle:"The Name I Definitely Remember",badge:"EP. 02 · 朋友聚会",scenes:[
+  {speaker:"BEN",en:"Hey! Good to see you again!",cn:"嘿！很高兴又见到你！",q:"Ben 完全忘了对方名字，他可以自然地问：",choices:["Remind me of your name again?", "Who are you, human?", "Your name disappeared."],answer:0,good:"对！这是很常见、也不失礼的补救方式。",bad:"这会让“忘记名字”升级成“忘记社交规则”。",note:"Remind me of... 比 What is your name again? 更柔和，承认自己需要被提醒。"},
+  {speaker:"MIA",en:"It's Chloe. Don't worry, I'm terrible with names too.",cn:"我是 Chloe。别担心，我也特别记不住名字。",q:"“I'm terrible with names” 实际意思是？",choices:["我很不擅长记名字", "我的名字很糟糕", "我讨厌所有名字"],answer:0,good:"没错！这是非常地道的固定表达。",bad:"不是名字本身有问题，是记名字这件事不擅长。",note:"I'm terrible with + 名词，表示“不擅长处理/记住……”。"},
+  {speaker:"BEN",en:"Thanks. My brain clocked out early today.",cn:"谢谢。我今天脑子提前下班了。",q:"这句话的语气是什么？",choices:["轻松自嘲", "正式道歉", "责怪老板"],answer:0,good:"正确！这是夸张又自然的自嘲。",bad:"这里没有老板，只有一颗已经下班的大脑。",note:"clock out 原意是下班打卡，也常被幽默地用于“大脑不工作了”。"}
+ ]},
+ {icon:"📱",level:"B1",cast:["😄","🤖"],title:"消息里的“没事”",subtitle:"The Text That Looked Angry",badge:"EP. 03 · 手机聊天",scenes:[
+  {speaker:"MIA",en:"Jake replied with just “Fine.” Is he mad?",cn:"Jake 只回了一个“Fine.”，他是不是生气了？",q:"想说“可能只是他在忙”，自然表达是？",choices:["He might just be busy.", "He must busy maybe.", "His busy is possible."],answer:0,good:"正确！might just be... 能温和表达一种可能。",bad:"意思能猜到，但语序会让朋友先研究语法，再安慰你。",note:"might just be 表示“可能只是……”，可以避免过度下结论。"},
+  {speaker:"JAKE",en:"Sorry, I was in a meeting. We're good!",cn:"抱歉，我刚才在开会。我们没事！",q:"“We're good” 在这里最接近哪个意思？",choices:["我们之间没问题", "我们都很优秀", "我们已经吃饱了"],answer:0,good:"就是这个意思！聊天里非常常见。",bad:"它有时能表示“够了/不需要”，但在这里是“我们没问题”。",note:"We're good 会随语境变化：关系没问题、不需要更多、事情已解决。"},
+  {speaker:"MIA",en:"Got it. My overthinking took the wheel for a second.",cn:"明白。刚才我的胡思乱想掌控了一会儿方向盘。",q:"“take the wheel” 在这里是什么意思？",choices:["掌控局面", "学习开车", "把方向盘带走"],answer:0,good:"正确！这个比喻既自然又有画面。",bad:"这里没有真的开车，是“胡思乱想控制了我”。",note:"take the wheel 是“接管、掌控”的生动说法，可用于幽默表达情绪。"}
+ ]},
+ {icon:"🍝",level:"B2",cast:["🌊","😜"],title:"餐厅里的委婉拒绝",subtitle:"The Dinner Nobody Ordered",badge:"EP. 04 · 朋友晚餐",scenes:[
+  {speaker:"BUBBLES",en:"I may have gone a little overboard with the pasta.",cn:"我做意面可能稍微有点过头了。",q:"这里的 “go overboard” 最自然的意思是？",choices:["做得过头了", "掉进海里了", "换了一块木板"],answer:0,good:"正确！这是美式交流里非常常见的夸张表达。",bad:"今天没有人落水，只是意面多到可以养活整栋楼。",note:"go overboard 表示做某事过量或太投入，语气通常轻松。"},
+  {speaker:"KIKI",en:"A little? This could feed a small country.",cn:"一点点？这些够一个小国家吃了。",q:"这句话使用了哪种交流方式？",choices:["友好的夸张吐槽", "严肃的国际新闻", "正式的食物统计"],answer:0,good:"对！朋友之间常用明显夸张来制造幽默。",bad:"不用开始计算人口，这是朋友之间的夸张玩笑。",note:"明显不可能的夸张通常是在开玩笑，语气比字面意思更重要。"},
+  {speaker:"BUBBLES",en:"Point taken. Leftovers for everyone, then.",cn:"懂你的意思了。那大家都带剩菜回去吧。",q:"“Point taken” 表达什么态度？",choices:["我明白并接受你的观点", "我获得了一分", "我把重点拿走了"],answer:0,good:"完全正确！成熟又简洁的回应。",bad:"不是比赛得分，而是“你说得有道理，我听进去了”。",note:"Point taken 常用于承认对方的意见有效，不等于完全同意所有细节。"}
+ ]}
+];
+
+let userLevel=localStorage.getItem("bubblyLevel")||"";
+let placementStep=0,placementAbility=2,placementQuestion=null;
+const placementUsed=new Set();
+let ep=Number(localStorage.getItem("bubblyEpisode")||0);
+let scene=Number(localStorage.getItem("bubblyScene")||0);
+let xp=Number(localStorage.getItem("bubblyXP")||0);
+let hearts=Number(localStorage.getItem("bubblyHearts")||3);
+const completed=new Set(JSON.parse(localStorage.getItem("bubblyCompleted")||"[]"));
+let answered=false;
+const todayKey=new Date().toLocaleDateString("en-CA");
+let daily=JSON.parse(localStorage.getItem("bubblyDaily")||"null")||{date:todayKey,correct:0,listen:0,scenes:0,claimed:false};
+if(daily.date!==todayKey)daily={date:todayKey,correct:0,listen:0,scenes:0,claimed:false};
+
+function renderPlacement(){
+ const target=Math.max(1,Math.min(4,Math.round(placementAbility)));
+ placementQuestion=placementBank.find((q,i)=>q.d===target&&!placementUsed.has(i))||placementBank.find((q,i)=>!placementUsed.has(i));
+ const index=placementBank.indexOf(placementQuestion);placementUsed.add(index);
+ document.getElementById("testProgress").innerHTML=Array.from({length:6},(_,i)=>`<span class="test-dot ${i<placementStep?'done':''}"></span>`).join("");
+ document.getElementById("testLabel").textContent=`第 ${placementStep+1} / 6 题 · 难度会自动调整`;
+ document.getElementById("testQuestion").textContent=placementQuestion.q;
+ const box=document.getElementById("testOptions");box.innerHTML="";
+ placementQuestion.options.forEach((text,i)=>{const b=document.createElement("button");b.className="test-option";b.textContent=String.fromCharCode(65+i)+". "+text;b.onclick=()=>answerPlacement(i);box.appendChild(b)});
+}
+function answerPlacement(index){
+ const correct=index===placementQuestion.a;
+ placementAbility+=correct?.48:-.38;placementAbility=Math.max(1,Math.min(4,placementAbility));placementStep++;
+ if(placementStep>=6){finishPlacement();return}renderPlacement();
+}
+function finishPlacement(){
+ userLevel=placementAbility<1.55?"A1":placementAbility<2.45?"A2":placementAbility<3.35?"B1":"B2";
+ localStorage.setItem("bubblyLevel",userLevel);ep={A1:0,A2:1,B1:2,B2:3}[userLevel];scene=0;save();
+ const descriptions={A1:"基础起步：先练高频生存口语",A2:"日常交流：开始理解常见习惯表达",B1:"独立交流：训练语气、幽默和上下文",B2:"自然表达：掌握含蓄、比喻和细微语气"};
+ document.getElementById("assessmentCard").innerHTML=`<div class="level-result"><div class="level-orb">${userLevel}</div><h2>找到你的起点了！</h2><p>${descriptions[userLevel]}</p><p>系统已为你选择最合适的第一集，后续题目会围绕这个水平展开。</p><button class="btn btn-main" onclick="enterCourse()">进入我的课程 →</button></div>`;
+}
+function enterCourse(){document.getElementById("assessment").classList.add("hidden");render();setTimeout(startEpisode,250)}
+function resetPlacement(){localStorage.removeItem("bubblyLevel");location.reload()}
+
+function dailyGoals(){return{correct:{goal:{A1:2,A2:3,B1:4,B2:5}[userLevel]||3,label:"答对题目"},listen:{goal:3,label:"试听英文"},scenes:{goal:2,label:"完成场景"}}}
+function renderDaily(){
+ const goals=dailyGoals(),icons={correct:"🎯",listen:"🔊",scenes:"🎬"};
+ document.getElementById("dailyDate").textContent=new Date().toLocaleDateString("zh-CN",{month:"long",day:"numeric"})+" · 每天自动刷新";
+ document.getElementById("dailyQuests").innerHTML=Object.entries(goals).map(([key,g])=>`<div class="quest ${daily[key]>=g.goal?'done':''}"><span class="quest-icon">${daily[key]>=g.goal?'✓':icons[key]}</span><span>${g.label}</span><b>${Math.min(daily[key],g.goal)}/${g.goal}</b></div>`).join("");
+ const ready=Object.entries(goals).every(([key,g])=>daily[key]>=g.goal);const btn=document.getElementById("claimButton");
+ btn.className="claim "+(ready&&!daily.claimed?"ready":"");btn.disabled=!ready||daily.claimed;btn.textContent=daily.claimed?"✓ 今日奖励已领取":"完成任务领取 +30 XP";
+}
+function bumpDaily(key){daily[key]++;localStorage.setItem("bubblyDaily",JSON.stringify(daily));renderDaily()}
+function claimDaily(){if(daily.claimed)return;daily.claimed=true;xp+=30;localStorage.setItem("bubblyDaily",JSON.stringify(daily));save();renderDaily();document.getElementById("xp").textContent=xp;confetti(22)}
+
+function renderEpisodeList(){
+ const box=document.getElementById("episodeList");box.innerHTML="";
+ episodes.forEach((item,i)=>{const b=document.createElement("button");b.className="episode-btn"+(i===ep?" active":"");const note=completed.has(i)?"✓ 已完成":item.level===userLevel?`${item.level} · 为你推荐`:`${item.level} · 3 个场景`;b.innerHTML=`<span class="ep-icon">${item.icon}</span><span class="ep-text"><strong>${item.title}</strong><small>${note}</small></span>`;b.onclick=()=>{ep=i;scene=0;save();render()};box.appendChild(b)});
+}
+function render(){
+ if(ep>=episodes.length)ep=0;
+ const e=episodes[ep],s=e.scenes[scene];answered=false;
+ document.getElementById("episodeTitle").textContent=e.title;
+ document.getElementById("episodeSubtitle").textContent=e.subtitle;
+ document.getElementById("sceneBadge").textContent=e.badge;
+ document.getElementById("levelBadge").textContent=userLevel||"待测";
+ document.getElementById("leftFace").textContent=e.cast[0];document.getElementById("rightFace").textContent=e.cast[1];
+ document.getElementById("speaker").textContent=s.speaker+" SAYS";
+ document.getElementById("lineEnglish").textContent=s.en;
+ document.getElementById("lineChinese").textContent=s.cn;
+ document.getElementById("question").textContent=s.q;
+ document.getElementById("nativeNote").textContent=s.note;
+ const choices=document.getElementById("choices");choices.innerHTML="";
+  s.choices.forEach((text,i)=>{
+    const row=document.createElement("div");row.className="choice-row";
+    const b=document.createElement("button");b.className="choice";b.textContent=String.fromCharCode(65+i)+". "+text;b.onclick=()=>choose(i,b);
+    const sound=document.createElement("button");sound.className="choice-sound";sound.textContent="🔊";sound.title="试听这个答案";sound.setAttribute("aria-label","试听："+text);sound.onclick=()=>speakText(text,.72);
+    row.appendChild(b);row.appendChild(sound);choices.appendChild(row);
+  });
+ const f=document.getElementById("feedback");f.className="feedback";f.innerHTML="";
+ document.getElementById("xp").textContent=xp;document.getElementById("hearts").textContent=hearts;
+ renderEpisodeList();updateProgress();renderDaily();
+}
+function choose(index,button){
+ if(answered)return;answered=true;const s=episodes[ep].scenes[scene];const all=[...document.querySelectorAll(".choice")];
+ all.forEach(x=>x.disabled=true);const f=document.getElementById("feedback");f.classList.add("show");
+ if(index===s.answer){button.classList.add("correct");xp+=10;bumpDaily("correct");f.innerHTML=`<strong>🎉 +10 XP</strong><br>${s.good}`;confetti();}
+ else{button.classList.add("wrong");all[s.answer].classList.add("correct");hearts=Math.max(0,hearts-1);f.innerHTML=`<strong>😅 差一点点</strong><br>${s.bad}`;}
+ setTimeout(()=>speakText(s.choices[s.answer],.76),250);
+ save();document.getElementById("xp").textContent=xp;document.getElementById("hearts").textContent=hearts;
+}
+function nextScene(){
+ const e=episodes[ep];
+ bumpDaily("scenes");
+ if(scene<e.scenes.length-1)scene++;
+ else{completed.add(ep);ep=(ep+1)%episodes.length;scene=0;confetti(18)}
+ save();render();document.querySelector(".stage").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function speakText(text,rate=.78){
+ if(!("speechSynthesis" in window)){alert("请使用 Edge 或 Chrome 体验语音朗读。 ");return}
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=rate;u.pitch=1;speechSynthesis.speak(u);if(userLevel)bumpDaily("listen");
+}
+function speakLine(){speakText(episodes[ep].scenes[scene].en,.78)}
+function startEpisode(){document.getElementById("learn").scrollIntoView({behavior:"smooth"});setTimeout(speakLine,500)}
+function updateProgress(){const p=Math.round(completed.size/episodes.length*100);document.getElementById("progressText").textContent=p+"%";document.getElementById("progressBar").style.width=p+"%"}
+function save(){localStorage.setItem("bubblyEpisode",ep);localStorage.setItem("bubblyScene",scene);localStorage.setItem("bubblyXP",xp);localStorage.setItem("bubblyHearts",hearts);localStorage.setItem("bubblyCompleted",JSON.stringify([...completed]));localStorage.setItem("bubblyDaily",JSON.stringify(daily))}
+function confetti(count=10){const icons=["⭐","💜","✨","🎉"];for(let i=0;i<count;i++){const x=document.createElement("span");x.className="confetti";x.textContent=icons[i%icons.length];x.style.left=(35+Math.random()*30)+"%";x.style.top=(30+Math.random()*20)+"%";x.style.animationDelay=(Math.random()*.25)+"s";document.body.appendChild(x);setTimeout(()=>x.remove(),1600)}}
+if(userLevel){document.getElementById("assessment").classList.add("hidden");render()}else{renderPlacement()}
+</script>
+</body>
+</html>
